@@ -1,54 +1,161 @@
-# React + TypeScript + Vite
+# Event Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack event management application built with React, Node.js, Express, and MongoDB.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- User authentication (login/register)
+- Create and manage events
+- Filter events by date and host
+- Join events
+- View upcoming and past events
+- Responsive design with Material-UI
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Frontend
+- React
+- TypeScript
+- Material-UI
+- React Router
+- React Hook Form
+- Axios
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Backend
+- Node.js
+- Express
+- MongoDB
+- Mongoose
+- JWT Authentication
+
+## Prerequisites
+
+- Node.js (v14 or higher)
+- MongoDB
+- npm or yarn
+
+## Setup Instructions
+
+### 1. Clone the Repository
+```bash
+git clone <repository-url>
+cd event_management_project
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Backend Setup
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+1. Navigate to the server directory:
+```bash
+cd server
 ```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Create a `.env` file in the server directory with the following variables:
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+```
+
+4. Start the backend server:
+```bash
+npm run dev
+```
+
+The server will start on http://localhost:5000
+
+### 3. Frontend Setup
+
+1. Open a new terminal and navigate to the project root:
+```bash
+cd src
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Create a `.env` file in the src directory:
+```env
+VITE_API_URL=http://localhost:5000/api
+```
+
+4. Start the frontend development server:
+```bash
+npm run dev
+```
+
+The application will start on http://localhost:5173
+
+## API Endpoints
+
+### Authentication
+- POST `/api/users/register` - Register a new user
+- POST `/api/users/login` - Login user
+- POST `/api/users/logout` - Logout user
+
+### Events
+- GET `/api/events` - Get all events
+- POST `/api/events` - Create a new event
+- GET `/api/events/:id` - Get event by ID
+- PUT `/api/events/:id` - Update event
+- DELETE `/api/events/:id` - Delete event
+- POST `/api/events/:id/join` - Join an event
+
+## Project Structure
+
+```
+event_management_project/
+├── src/                    # Frontend source code
+│   ├── Components/        # Reusable components
+│   ├── Context/          # React context providers
+│   ├── Pages/            # Page components
+│   └── ...
+├── server/                # Backend source code
+│   ├── Controllers/      # Route controllers
+│   ├── Models/          # Database models
+│   ├── Routes/          # API routes
+│   └── ...
+└── ...
+```
+
+## Development
+
+### Running Tests
+```bash
+# Backend tests
+cd server
+npm test
+
+# Frontend tests
+cd src
+npm test
+```
+
+### Building for Production
+```bash
+# Build frontend
+cd src
+npm run build
+
+# Build backend
+cd server
+npm run build
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
